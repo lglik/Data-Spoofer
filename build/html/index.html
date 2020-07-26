@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation for Data Spoofer &#8212; Data Spoofer 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-spoof">
+<span id="documentation-for-data-spoofer"></span><h1>Documentation for Data Spoofer<a class="headerlink" href="#module-spoof" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="spoof-py">
+<h2>spoof.py<a class="headerlink" href="#spoof-py" title="Permalink to this headline">¶</a></h2>
+<p>This module creates modified copies of a spectrogram which can be
+saved as PNGs.</p>
+<dl class="py class">
+<dt id="spoof.SpoofedData">
+<em class="property">class </em><code class="sig-prename descclassname">spoof.</code><code class="sig-name descname">SpoofedData</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span></em>, <em class="sig-param"><span class="n">iters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spoof.SpoofedData" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class creates modified copies of the source spectrogram and which can be
+saved as PNGs. Possible modifications include, randomly adjusting the amplitude,
+time-shifting, and adding white noise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>string</em>) – An absolute or relative path to a grayscale spectrogram png.</p></li>
+<li><p><strong>iters</strong> (<em>int</em>) – The number of spoofed spectrograms to be created.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="spoof.SpoofedData.AMP_FREQ_RANGE">
+<code class="sig-name descname">AMP_FREQ_RANGE</code><em class="property"> = 80</em><a class="headerlink" href="#spoof.SpoofedData.AMP_FREQ_RANGE" title="Permalink to this definition">¶</a></dt>
+<dd><p>the most (+/-) the frequency bands can be adjusted</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spoof.SpoofedData.AMP_TIME_RANGE">
+<code class="sig-name descname">AMP_TIME_RANGE</code><em class="property"> = 80</em><a class="headerlink" href="#spoof.SpoofedData.AMP_TIME_RANGE" title="Permalink to this definition">¶</a></dt>
+<dd><p>the most (+/-) the time bands can be adjusted</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spoof.SpoofedData.MAX_AMP_FREQ">
+<code class="sig-name descname">MAX_AMP_FREQ</code><em class="property"> = 5</em><a class="headerlink" href="#spoof.SpoofedData.MAX_AMP_FREQ" title="Permalink to this definition">¶</a></dt>
+<dd><p>the maximum fraction (1/x) of frequency bands to be adjusted</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spoof.SpoofedData.MAX_AMP_TIME">
+<code class="sig-name descname">MAX_AMP_TIME</code><em class="property"> = 5</em><a class="headerlink" href="#spoof.SpoofedData.MAX_AMP_TIME" title="Permalink to this definition">¶</a></dt>
+<dd><p>the maximum fraction (1/x) of time bands to be adjusted</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spoof.SpoofedData.RANDOM_NOISE_CHANCE">
+<code class="sig-name descname">RANDOM_NOISE_CHANCE</code><em class="property"> = 10</em><a class="headerlink" href="#spoof.SpoofedData.RANDOM_NOISE_CHANCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>the chance (1/x) that a pixel becomes random noise</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spoof.SpoofedData.VOL_ADJUST_RANGE">
+<code class="sig-name descname">VOL_ADJUST_RANGE</code><em class="property"> = 50</em><a class="headerlink" href="#spoof.SpoofedData.VOL_ADJUST_RANGE" title="Permalink to this definition">¶</a></dt>
+<dd><p>the most (+/-) the amplitude(volume) can be adjusted</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spoof.SpoofedData.adjust_volume">
+<code class="sig-name descname">adjust_volume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spoof.SpoofedData.adjust_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function adjusts the amplitude (“volume”) of the spectrogram by
+a random amount. This is accomplished by adjusting the grayscale
+color of each pixel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spoof.SpoofedData.amp_freq">
+<code class="sig-name descname">amp_freq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spoof.SpoofedData.amp_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates numpy arrays representing spectrograms where a
+random number of frequency bands have had their amplitudes change by a
+random quantity.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spoof.SpoofedData.amp_time">
+<code class="sig-name descname">amp_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spoof.SpoofedData.amp_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates numpy arrays representing spectrograms where a
+random number of time bands have had their amplitudes change by a
+random quantity.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spoof.SpoofedData.background_noise">
+<code class="sig-name descname">background_noise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spoof.SpoofedData.background_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function adds in a random “background noise” from a user-specified directory.
+This is accomplished by creating a spectrogram that has the average values of the
+two source spectrograms at each location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>string</em>) – An absolute or relative path to a grayscale spectrogram png.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spoof.SpoofedData.random_noise">
+<code class="sig-name descname">random_noise</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spoof.SpoofedData.random_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function adds in random “white noise” to the spectrogram by setting a
+random percentage of pixels to random grayscale values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spoof.SpoofedData.save_image">
+<code class="sig-name descname">save_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dest_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">replace</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spoof.SpoofedData.save_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function saves the newly created numpy arrays as grayscale
+spectrogram pngs. A directory to save the images in and whether or not
+to replace the source image can be specified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dest_path</strong> (<em>string</em>) – The directory to place the new images. By default the
+source directory is used.</p></li>
+<li><p><strong>replace</strong> (<em>bool</em>) – Whether or not the source image should be replaced.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spoof.SpoofedData.time_shift">
+<code class="sig-name descname">time_shift</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spoof.SpoofedData.time_shift" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function shifts the spectrogram with respect to time by a random amount.
+The spectrogram “rolls” so that no data is lost. For example, data at the right
+side of the spectrogram may have shifted around to the left. This function also
+smooths in any empty space at the beginning or ending of the recording.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Data Spoofer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Leo Glikbarg.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
